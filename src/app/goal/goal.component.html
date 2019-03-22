@@ -1,0 +1,22 @@
+
+<h1>My Goals</h1>
+<app-goal-form (addGoal)="addNewGoal($event)"></app-goal-form> <!-- link form to it's parent component goal then goal links to it's parent app -->
+
+<hr>
+<div class="container">
+    <div class="" *ngFor="let goal of goals;let i = 'index'">
+
+        <div class="">
+            <h4 id="{{i}}" appStrikethrough>{{goal.name}} due on {{goal.completeDate|date|uppercase}}</h4>
+ 
+        </div>
+        
+        <div class="" *ngIf="goal.showDescription">
+        <app-goal-details  [goal]='goal' (isComplete)= 'deleteGoal($event,i)'></app-goal-details>
+    </div><br><br>
+    <button class="btn btn-primary" (click)='toogleDetails(i)'>Toogle Details</button>
+
+</div>
+</div>
+
+<p *ngIf='goals.length > 5'>You have too many goals</p>
